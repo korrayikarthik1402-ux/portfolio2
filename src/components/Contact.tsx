@@ -5,7 +5,7 @@ export default function Contact() {
     <section id="contact" className="section-shell pattern-grid bg-white px-4 py-16 dark:bg-slate-800 sm:px-6 lg:px-8">
       <div className="mx-auto w-full max-w-6xl">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4 flex items-center justify-center gap-3">
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4 flex items-center justify-center gap-3">
             <Send className="w-10 h-10 text-blue-600" />
             Get In Touch
           </h2>
@@ -18,14 +18,14 @@ export default function Contact() {
 
         <div className="grid gap-8 xl:grid-cols-[1.2fr_1fr] xl:gap-12">
           <div className="space-y-6">
-            <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-xl p-8 text-white shadow-xl">
+            <div className="bg-gradient-to-br from-blue-600 to-cyan-600 rounded-xl p-5 sm:p-8 text-white shadow-xl">
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
               <div className="space-y-4">
                 <a
                   href="mailto:karthikkorrayii@gmail.com"
-                  className="flex items-center gap-4 hover:text-blue-100 transition-colors group"
+                  className="flex items-center gap-3 sm:gap-4 hover:text-blue-100 transition-colors group"
                 >
-                  <div className="bg-white/20 p-3 rounded-lg group-hover:bg-white/30 transition-colors">
+                  <div className="shrink-0 bg-white/20 p-3 rounded-lg group-hover:bg-white/30 transition-colors">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
@@ -36,9 +36,9 @@ export default function Contact() {
 
                 <a
                   href="tel:+918968960269"
-                  className="flex items-center gap-4 hover:text-blue-100 transition-colors group"
+                  className="flex items-center gap-3 sm:gap-4 hover:text-blue-100 transition-colors group"
                 >
-                  <div className="bg-white/20 p-3 rounded-lg group-hover:bg-white/30 transition-colors">
+                  <div className="shrink-0 bg-white/20 p-3 rounded-lg group-hover:bg-white/30 transition-colors">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
@@ -47,19 +47,19 @@ export default function Contact() {
                   </div>
                 </a>
 
-                <div className="flex items-center gap-4">
-                  <div className="rounded-lg bg-white/20 p-3 text-white">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="rounded-lg shrink-0 bg-white/20 p-3 text-white">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
                     <p className="text-sm text-blue-100">Location</p>
-                    <p className="font-medium">Bangalore, Karnataka, India</p>
+                    <p className="font-medium">Hyderabad, Telangana, India</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-xl bg-slate-100 p-8 text-slate-900 shadow-xl dark:bg-slate-900 dark:text-white">
+            <div className="rounded-xl bg-slate-100 p-5 sm:p-8 text-slate-900 shadow-xl dark:bg-slate-900 dark:text-white">
               <h3 className="mb-4 text-xl font-bold">Profiles</h3>
               <div className="space-y-3">
                 <a
@@ -68,7 +68,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3 bg-white/10 dark:bg-slate-800/40 rounded-lg hover:bg-white/20 dark:hover:bg-slate-700/70 transition-colors"
                 >
-                  <Linkedin className="w-5 h-5 text-blue-400" />
+                  <Linkedin className="w-5 h-5 text-blue-700 dark:text-blue-300" />
                   <span>linkedin.com/in/karthik-korrayi</span>
                 </a>
                 <a

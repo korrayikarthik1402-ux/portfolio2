@@ -23,24 +23,24 @@ type SkillCategory = {
 
 const skillCategories: SkillCategory[] = [
   {
-    title: 'Programming Languages',
+    title: 'Programming/Scripting Languages',
     subtitle: 'Core language stack for product development',
     icon: Terminal,
-    skills: ['JavaScript', 'TypeScript', 'Java', 'C++', 'SQL', 'HTML/CSS'],
+    skills: [ 'HTML/CSS/JS', 'Java', 'C++' , 'Python', 'Bash', 'PowerShell', 'YAML'],
     color: 'blue',
   },
   {
     title: 'Frameworks & Libraries',
     subtitle: 'Modern UI and backend frameworks',
     icon: Layers,
-    skills: ['React', 'Node.js', 'Express', 'Django', 'Spring Boot', 'Tailwind CSS', 'Next.js'],
+    skills: ['Spring Boot','React.js', 'Node.js', 'Angular', 'Express.js', 'Next.js'],
     color: 'cyan',
   },
   {
     title: 'Cloud & DevOps',
     subtitle: 'Deployment, automation, and delivery tooling',
     icon: Cloud,
-    skills: ['AWS', 'Azure', 'Docker', 'Kubernetes', 'CI/CD', 'Git', 'Jenkins', 'Terraform'],
+    skills: ['Azure', 'AWS', 'Docker', 'Kubernetes', 'CI/CD', 'Git', 'Jenkins', 'Terraform'],
     color: 'emerald',
   },
   {
@@ -98,7 +98,7 @@ export default function Skills() {
         <div className="mb-8">
           <p className="portfolio-eyebrow">02 / The toolkit</p>
           <h2 id="skills-heading" className="portfolio-heading">Built on a versatile stack.</h2>
-          <p className="mt-3 max-w-xl leading-7 text-slate-300">The languages, platforms, and practices I bring to each stage of a project.</p>
+          <p className="mt-3 max-w-xl leading-7 text-slate-600 dark:text-slate-300">The languages, platforms, and practices I bring to each stage of a project.</p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
           {skillCategories.map((category, index) => {
@@ -106,15 +106,15 @@ export default function Skills() {
             return (
               <article key={category.title} className={`portfolio-glass p-6 sm:p-7 ${index < 2 ? 'xl:col-span-3' : 'xl:col-span-2'} ${index === 4 ? 'md:col-span-2' : ''}`}>
                 <div className="mb-6 flex items-center justify-between">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-200/20 bg-cyan-200/10 text-cyan-200"><Icon size={22} aria-hidden="true" /></span>
-                  <span aria-hidden="true" className="font-mono text-xs text-slate-400">0{index + 1}</span>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-700/20 dark:border-cyan-200/20 bg-cyan-600/10 dark:bg-cyan-200/10 text-cyan-800 dark:text-cyan-200"><Icon size={22} aria-hidden="true" /></span>
+                  <span aria-hidden="true" className="font-mono text-xs text-slate-500 dark:text-slate-400">0{index + 1}</span>
                 </div>
-                <h3 className="text-xl font-semibold tracking-tight text-white">{category.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-300">{category.subtitle}</p>
+                <h3 className="text-xl font-semibold tracking-tight text-slate-900 dark:text-white">{category.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">{category.subtitle}</p>
                 <ul className="mt-6 flex flex-wrap gap-2">
                   {category.skills.map((skill) => {
                     const SkillIcon = skillIconMap[skill] ?? Code;
-                    return <li key={skill} className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-slate-200"><SkillIcon size={14} className="shrink-0 text-cyan-200" aria-hidden="true" />{skill}</li>;
+                    return <li key={skill} className="inline-flex items-center gap-2 rounded-lg border border-slate-200 dark:border-white/10 bg-slate-100/80 dark:bg-white/5 px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-200"><SkillIcon size={14} className="shrink-0 text-cyan-800 dark:text-cyan-200" aria-hidden="true" />{skill}</li>;
                   })}
                 </ul>
               </article>

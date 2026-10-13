@@ -5,8 +5,8 @@ export default function Education() {
     <section id="education" className="section-shell pattern-lines py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4 flex items-center justify-center gap-3">
-            <GraduationCap className="w-10 h-10 text-blue-600" />
+          <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4 flex items-center justify-center gap-3">
+            <GraduationCap className="w-8 h-8 shrink-0 text-blue-700 dark:text-blue-300" />
             Education
           </h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto"></div>
@@ -17,7 +17,7 @@ export default function Education() {
             <div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-6 text-white">
               <div className="flex items-center gap-3 mb-2">
                 <GraduationCap className="w-8 h-8" />
-                <h3 className="text-2xl font-bold">Bachelor's Degree</h3>
+                <h3 className="text-xl sm:text-2xl font-bold">Bachelor of Technology</h3>
               </div>
               <p className="text-xl text-blue-100">Computer Science Engineering</p>
             </div>
@@ -29,11 +29,11 @@ export default function Education() {
                 </div>
                 <div className="flex items-center gap-4 text-slate-700 dark:text-slate-300">
                   <span className="font-medium">Graduated:</span>
-                  <span>May 2023</span>
+                  <span>June 2023</span>
                 </div>
                 <div className="flex items-center gap-4 text-slate-700 dark:text-slate-300">
                   <span className="font-medium">GPA:</span>
-                  <span className="font-semibold text-blue-600">7.5/10</span>
+                  <span className="font-semibold text-blue-700 dark:text-blue-300">7.5/10</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Relevant Coursework:</h4>
@@ -63,7 +63,7 @@ export default function Education() {
             <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 p-6 hover:shadow-xl transition-shadow">
               <div className="flex items-start gap-4">
                 <div className="rounded-lg bg-blue-100 p-3 dark:bg-blue-500/15">
-                  <Award className="w-6 h-6 text-blue-600" />
+                  <Award className="w-6 h-6 text-blue-700 dark:text-blue-300" />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold text-slate-900 dark:text-slate-100 mb-3">Certifications</h3>

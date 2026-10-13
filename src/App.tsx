@@ -19,12 +19,18 @@ function App() {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const shouldUseDarkMode = savedTheme ? savedTheme === 'dark' : prefersDark;
-
-    setIsDarkMode(shouldUseDarkMode);
-    document.documentElement.classList.toggle('dark', shouldUseDarkMode);
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const syncTheme = () => {
+      let saved: string | null = null;
+      try { saved = localStorage.getItem('theme'); } catch { /* System theme works without storage. */ }
+      const dark = saved === 'dark' || (saved !== 'light' && media.matches);
+      setIsDarkMode(dark);
+      document.documentElement.classList.toggle('dark', dark);
+    };
+    syncTheme();
+    media.addEventListener('change', syncTheme);
+    window.addEventListener('storage', syncTheme);
+    return () => { media.removeEventListener('change', syncTheme); window.removeEventListener('storage', syncTheme); };
   }, []);
 
   useEffect(() => {
@@ -91,7 +97,7 @@ function App() {
       return;
     }
 
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
     setActiveSection(section as SectionId);
   };
 
@@ -100,7 +106,7 @@ function App() {
 
     setIsDarkMode(nextThemeIsDark);
     document.documentElement.classList.toggle('dark', nextThemeIsDark);
-    localStorage.setItem('theme', nextThemeIsDark ? 'dark' : 'light');
+    try { localStorage.setItem('theme', nextThemeIsDark ? 'dark' : 'light'); } catch { /* Keep the current session theme. */ }
   };
 
   const handlePointerMove = (event: MouseEvent<HTMLDivElement>) => {
@@ -113,7 +119,7 @@ function App() {
   return (
     <div
       onMouseMove={handlePointerMove}
-      className="relative flex h-screen overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 transition-colors duration-500 dark:from-slate-950 dark:to-slate-900"
+      className="relative flex h-[100dvh] overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100 transition-colors duration-500 dark:from-slate-950 dark:to-slate-900"
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-300 dark:opacity-40"
@@ -133,11 +139,13 @@ function App() {
         onSectionChange={handleSectionChange}
         isExpanded={isSidebarExpanded}
         onToggleExpand={() => setIsSidebarExpanded((prev) => !prev)}
+        isDarkMode={isDarkMode}
+        onThemeToggle={handleThemeToggle}
       />
 
       <main
         ref={mainRef}
-        className={`relative z-10 flex-1 overflow-y-auto scroll-smooth pt-24 pb-28 md:pt-0 md:pb-0 ${
+        className={`relative z-10 min-w-0 flex-1 overflow-y-auto overscroll-contain pt-20 pb-[calc(6rem+env(safe-area-inset-bottom))] md:pt-0 md:pb-0 ${
           isSidebarExpanded ? 'md:ml-80' : 'md:ml-24'
         }`}
       >
