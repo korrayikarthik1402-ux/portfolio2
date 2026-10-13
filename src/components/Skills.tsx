@@ -59,39 +59,6 @@ const skillCategories: SkillCategory[] = [
   },
 ];
 
-const categoryColorClasses: Record<SkillCategory['color'], { accent: string; chip: string; chipText: string; chipBorder: string }> = {
-  blue: {
-    accent: 'from-blue-600 to-indigo-600',
-    chip: 'bg-blue-50 dark:bg-blue-500/10',
-    chipText: 'text-blue-700 dark:text-blue-300',
-    chipBorder: 'border-blue-200 dark:border-blue-500/30',
-  },
-  cyan: {
-    accent: 'from-cyan-600 to-sky-600',
-    chip: 'bg-cyan-50 dark:bg-cyan-500/10',
-    chipText: 'text-cyan-700 dark:text-cyan-300',
-    chipBorder: 'border-cyan-200 dark:border-cyan-500/30',
-  },
-  emerald: {
-    accent: 'from-emerald-600 to-teal-600',
-    chip: 'bg-emerald-50 dark:bg-emerald-500/10',
-    chipText: 'text-emerald-700 dark:text-emerald-300',
-    chipBorder: 'border-emerald-200 dark:border-emerald-500/30',
-  },
-  teal: {
-    accent: 'from-teal-600 to-cyan-600',
-    chip: 'bg-teal-50 dark:bg-teal-500/10',
-    chipText: 'text-teal-700 dark:text-teal-300',
-    chipBorder: 'border-teal-200 dark:border-teal-500/30',
-  },
-  sky: {
-    accent: 'from-sky-600 to-blue-600',
-    chip: 'bg-sky-50 dark:bg-sky-500/10',
-    chipText: 'text-sky-700 dark:text-sky-300',
-    chipBorder: 'border-sky-200 dark:border-sky-500/30',
-  },
-};
-
 const skillIconMap: Record<string, LucideIcon> = {
   JavaScript: Code,
   TypeScript: Braces,
@@ -126,55 +93,30 @@ const skillIconMap: Record<string, LucideIcon> = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-shell pattern-dots px-4 py-16 sm:px-8 lg:px-12">
-      <div className="relative z-10 mx-auto w-full max-w-6xl">
-        <div className="mb-12">
-          <h2 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-2 flex items-center gap-3">
-            <div className="w-1 h-10 bg-gradient-to-b from-blue-600 to-cyan-600 rounded-full"></div>
-            Technical Skills
-          </h2>
-          <p className="text-slate-600 dark:text-slate-300">Expertise across multiple technologies and platforms</p>
+    <section id="skills" aria-labelledby="skills-heading" className="portfolio-section px-4 py-16 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-8">
+          <p className="portfolio-eyebrow">02 / The toolkit</p>
+          <h2 id="skills-heading" className="portfolio-heading">Built on a versatile stack.</h2>
+          <p className="mt-3 max-w-xl leading-7 text-slate-300">The languages, platforms, and practices I bring to each stage of a project.</p>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {skillCategories.map((category) => {
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
+          {skillCategories.map((category, index) => {
             const Icon = category.icon;
-            const colors = categoryColorClasses[category.color];
-
             return (
-              <article
-                key={category.title}
-                className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white/85 dark:bg-slate-900/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className={`rounded-t-2xl bg-gradient-to-r ${colors.accent} px-6 py-5 text-white`}>
-                  <div className="flex items-start gap-3">
-                    <div className="rounded-lg bg-white/20 p-2.5">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-bold">{category.title}</h3>
-                      <p className="text-sm text-white/85 mt-1">{category.subtitle}</p>
-                    </div>
-                  </div>
+              <article key={category.title} className={`portfolio-glass p-6 sm:p-7 ${index < 2 ? 'xl:col-span-3' : 'xl:col-span-2'} ${index === 4 ? 'md:col-span-2' : ''}`}>
+                <div className="mb-6 flex items-center justify-between">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-200/20 bg-cyan-200/10 text-cyan-200"><Icon size={22} aria-hidden="true" /></span>
+                  <span aria-hidden="true" className="font-mono text-xs text-slate-400">0{index + 1}</span>
                 </div>
-
-                <div className="p-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {category.skills.map((skill) => {
-                      const SkillIcon = skillIconMap[skill] ?? Code;
-
-                      return (
-                        <div
-                          key={skill}
-                          className={`flex items-center gap-2.5 rounded-xl border px-3 py-2.5 ${colors.chip} ${colors.chipText} ${colors.chipBorder}`}
-                        >
-                          <SkillIcon className="h-4 w-4 shrink-0" />
-                          <span className="text-sm font-medium">{skill}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
+                <h3 className="text-xl font-semibold tracking-tight text-white">{category.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-300">{category.subtitle}</p>
+                <ul className="mt-6 flex flex-wrap gap-2">
+                  {category.skills.map((skill) => {
+                    const SkillIcon = skillIconMap[skill] ?? Code;
+                    return <li key={skill} className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm font-medium text-slate-200"><SkillIcon size={14} className="shrink-0 text-cyan-200" aria-hidden="true" />{skill}</li>;
+                  })}
+                </ul>
               </article>
             );
           })}

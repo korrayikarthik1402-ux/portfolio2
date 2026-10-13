@@ -70,79 +70,36 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" className="section-shell pattern-grid px-4 py-16 sm:px-8 lg:px-12">
-      <div className="relative z-10 mx-auto w-full max-w-6xl">
-        <div className="mb-12">
-          <h2 className="mb-2 flex items-center gap-3 text-4xl font-bold text-slate-900 dark:text-slate-100">
-            <div className="h-10 w-1 rounded-full bg-gradient-to-b from-blue-600 to-cyan-600"></div>
-            Professional Experience
-          </h2>
-          <p className="text-slate-600 dark:text-slate-300">2.6 years of hands-on experience in software development</p>
+    <section id="experience" aria-labelledby="experience-heading" className="portfolio-section px-4 py-16 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-8">
+          <p className="portfolio-eyebrow">03 / The journey</p>
+          <h2 id="experience-heading" className="portfolio-heading">Experience that makes a difference.</h2>
+          <p className="mt-3 max-w-xl leading-7 text-slate-300">From enterprise automation to frontend development, a journey of learning and delivering.</p>
         </div>
-
-        <div className="space-y-8">
-          {experiences.map((exp, idx) => (
-            <div
-              key={idx}
-              className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg transition-all hover:shadow-xl dark:border-slate-700 dark:bg-slate-800"
-            >
-              <div className="bg-gradient-to-r from-blue-600 to-cyan-600 p-6 text-white">
-                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className="h-14 w-14 overflow-hidden rounded-xl border border-white/30 bg-white/10 p-1.5">
-                      <img src={exp.companyLogo} alt={`${exp.company} logo`} className="h-full w-full rounded-lg object-cover" />
-                    </div>
-                    <div>
-                      <h3 className="mb-1 text-2xl font-bold">{exp.title}</h3>
-                      <p className="text-xl text-blue-100">{exp.company}</p>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-2 text-blue-50">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" />
-                      <span>{exp.period}</span>
-                      <span className="rounded bg-white/95 px-2 py-0.5 text-sm font-semibold text-slate-700 shadow-sm dark:bg-slate-900/90 dark:text-slate-100">
-                        {getDurationLabel(exp.startDate, exp.endDate)}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4" />
-                      <span>{exp.location}</span>
-                    </div>
-                  </div>
-                </div>
+        <div className="grid gap-4 xl:grid-cols-2">
+          {experiences.map((exp) => (
+            <article key={`${exp.company}-${exp.startDate}`} className="portfolio-glass flex min-w-0 flex-col p-6 sm:p-8">
+              <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
+                <img src={exp.companyLogo} alt={`${exp.company} logo`} loading="lazy" width={56} height={56} className="h-14 w-14 rounded-2xl border border-white/20 bg-white object-contain p-2" />
+                <span className={`rounded-full border px-3 py-1 text-xs font-medium ${exp.endDate ? 'border-white/15 bg-white/5 text-slate-300' : 'border-emerald-300/20 bg-emerald-300/10 text-emerald-200'}`}>{exp.endDate ? 'Previous role' : 'Current role'}</span>
               </div>
-
-              <div className="p-6">
-                <p className="mb-4 text-lg text-slate-600 dark:text-slate-300">{exp.description}</p>
-
-                <div className="mb-6">
-                  <h4 className="mb-3 font-semibold text-slate-900 dark:text-slate-100">Key Achievements:</h4>
-                  <ul className="space-y-2">
-                    {exp.achievements.map((achievement, achIdx) => (
-                      <li key={achIdx} className="flex items-start gap-2 text-slate-700 dark:text-slate-300">
-                        <span className="mt-1 text-blue-600">▹</span>
-                        <span>{achievement}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div>
-                  <h4 className="mb-3 font-semibold text-slate-900 dark:text-slate-100">Technologies:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech, techIdx) => (
-                      <span
-                        key={techIdx}
-                        className="rounded-lg border border-slate-200 bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700 dark:border-slate-600 dark:bg-slate-700/60 dark:text-slate-100"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+              <p className="text-sm font-medium text-cyan-200">{exp.company}</p>
+              <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">{exp.title}</h3>
+              <div className="mt-5 space-y-2 text-sm text-slate-300">
+                <p className="flex flex-wrap items-center gap-2"><Calendar size={16} className="shrink-0 text-slate-400" aria-hidden="true" /><span>{exp.period}</span><span className="text-slate-400">· {getDurationLabel(exp.startDate, exp.endDate)}</span></p>
+                <p className="flex items-start gap-2"><MapPin size={16} className="mt-0.5 shrink-0 text-slate-400" aria-hidden="true" />{exp.location}</p>
               </div>
-            </div>
+              <p className="mt-6 border-t border-white/10 pt-6 text-sm leading-7 text-slate-300">{exp.description}</p>
+              <h4 className="mb-4 mt-6 text-sm font-semibold text-white">Key contributions</h4>
+              <ul className="space-y-4">
+                {exp.achievements.map((achievement) => <li key={achievement} className="flex items-start gap-3 text-sm leading-7 text-slate-300"><span aria-hidden="true" className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-200" /><span>{achievement}</span></li>)}
+              </ul>
+              <div className="mt-auto pt-8">
+                <h4 className="mb-3 text-sm font-semibold text-white">Technologies</h4>
+                <ul className="flex flex-wrap gap-2">{exp.technologies.map((tech) => <li key={tech} className="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium leading-5 text-slate-200">{tech}</li>)}</ul>
+              </div>
+            </article>
           ))}
         </div>
       </div>
